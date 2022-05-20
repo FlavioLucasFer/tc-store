@@ -13,6 +13,8 @@ class client_t
 	OO_ENCAPSULATE(std::string, phone_number);
 
 	public:
+		client_t () {}
+		
 		client_t (std::string name, std::string email, std::string phone_number)
 		{
 			this->id = generate_client_id();	
