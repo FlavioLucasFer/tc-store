@@ -1,6 +1,7 @@
 #include <iostream>
 #include "lib.h"
 #include "client.h"
+#include "product.h"
 
 using choice_t = uint_t;
 
@@ -36,7 +37,6 @@ enum class client_interface_state_t
 #define CLIENT_INTERFACE_DELETE_STATE client_interface_state_t::remove
 };
 
-/*
 enum class product_interface_state_t
 {
 	menu,
@@ -50,10 +50,9 @@ enum class product_interface_state_t
 #define PRODUCT_INTERFACE_CREATE_STATE product_interface_state_t::create
 #define PRODUCT_INTERFACE_LIST_STATE product_interface_state_t::list
 #define PRODUCT_INTERFACE_UPDATE_STATE product_interface_state_t::update
-#define PRODUCT_INTERFACE_REMOVE_STATE product_interface_state_t::remove
-#define PRODUCT_INTERFACE_SELL_STATE product_interface_state_t::remove
+#define PRODUCT_INTERFACE_DELETE_STATE product_interface_state_t::remove
+#define PRODUCT_INTERFACE_SELL_STATE product_interface_state_t::sell
 };
-*/
 
 namespace client_interface
 {
@@ -65,7 +64,6 @@ namespace client_interface
 	void list ();
 }
 
-/*
 namespace product_interface
 {
 	product_t* get_product_by_id ();
@@ -76,4 +74,3 @@ namespace product_interface
 	void list ();
 	void sell ();
 }
-*/

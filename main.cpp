@@ -3,6 +3,7 @@
 bool executing = true;
 state_t state = MAIN_MENU_STATE;
 client_interface_state_t client_interface_state = CLIENT_INTERFACE_MENU_STATE;
+product_interface_state_t product_interface_state = PRODUCT_INTERFACE_MENU_STATE;
 
 choice_t get_menu_choice (uint_t max_value)
 {
@@ -147,6 +148,104 @@ void client_i ()
 				
 		}
 	} while (state == CLIENT_MENU_STATE);
+}
+
+namespace product_interface
+{
+	void menu ()
+	{
+		PRINTLN("PRODUCT MANAGEMENT\n");
+		PRINTLN("1. List all");
+		PRINTLN("2. Create");
+		PRINTLN("3. Update");
+		PRINTLN("4. Delete");
+		PRINTLN("5. Return");
+	}
+	
+	//product_t* get_product_by_id () {}
+	
+	//void create () {}
+	
+	//void update () {}
+	
+	//void remove () {}
+	
+	//void list () {}
+	
+}
+
+void product_menu ()
+{
+	product_interface::menu();
+	choice_t choice = get_menu_choice(5);
+	
+	switch (choice) {
+		case 1:
+			product_interface_state = PRODUCT_INTERFACE_LIST_STATE;
+			break;
+			
+		case 2:
+			product_interface_state = PRODUCT_INTERFACE_CREATE_STATE;
+			break;
+			
+		case 3:
+			product_interface_state = PRODUCT_INTERFACE_UPDATE_STATE;
+			break;
+			
+		case 4:
+			product_interface_state = PRODUCT_INTERFACE_DELETE_STATE;
+			break;
+	
+		case 5:
+			product_interface_state = PRODUCT_INTERFACE_MENU_STATE;
+			state = MAIN_MENU_STATE;
+			CLEAR_CONSOLE;
+			break;
+			
+		default:
+			product_interface_state = PRODUCT_INTERFACE_MENU_STATE;
+			state = PANIC_STATE;
+			CLEAR_CONSOLE;
+			break;
+	}
+}
+
+void product_i ()
+{
+	do {
+		switch (product_interface_state) {
+			case PRODUCT_INTERFACE_MENU_STATE:
+				product_menu();
+				break;
+				
+			case PRODUCT_INTERFACE_CREATE_STATE:
+				//product_interface::create();
+				product_interface_state = product_INTERFACE_MENU_STATE;
+				break;
+				
+			case PRODUCT_INTERFACE_LIST_STATE:
+				//product_interface::list();
+				product_interface_state = product_INTERFACE_MENU_STATE;
+				break;
+				
+			case PRODUCT_INTERFACE_UPDATE_STATE:
+				//product_interface::update();
+				product_interface_state = product_INTERFACE_MENU_STATE;
+				break;
+				
+			case PRODUCT_INTERFACE_DELETE_STATE:
+				//product_interface::remove();
+				product_interface_state = product_INTERFACE_MENU_STATE;
+				break;
+				
+			default: //return
+				CLEAR_CONSOLE;
+				product_interface_state = product_INTERFACE_MENU_STATE;
+				state = MAIN_MENU_STATE;
+				break;
+				
+		}
+	} while (state == PRODUCT_MENU_STATE);
 }
 
 int main ()
