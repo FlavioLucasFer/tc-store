@@ -1,28 +1,32 @@
 #ifndef __TC_STORE_CLIENT__
 #define __TC_STORE_CLIENT__
 
-#include "lib.h"
-
-uint16_t generate_client_id ();
+#include <string>
+#include <cmath>
+#include "db.h"
 
 class client_t
 {
-	OO_ENCAPSULATE_RO(uint16_t, id);
-	OO_ENCAPSULATE(std::string, name);
-	OO_ENCAPSULATE(std::string, email);
-	OO_ENCAPSULATE(std::string, phone_number);
+	PK(id);
+	VARCHAR(name, 255);
+	VARCHAR(email, 255);
+	VARCHAR(phone_number, 255);
+	NUMERIC(debt);
+	DELETED_FLAG;
 
 	public:
 		client_t () {}
 		
-		client_t (std::string name, std::string email, std::string phone_number)
+		client_t (db::varchar_t name, db::varchar_t email, db::varchar_t phone_number)
 		{
-			this->id = generate_client_id();	
-			this->name = name;
-			this->email = email;
-			this->phone_number = phone_number;
+			this->set_name(name);
+			this->set_email(email);	
+			this->set_phone_number(phone_number);
+			debt = 0;
 		}
-		
+
+	public:
+		std::string fdebt ();
 		std::string to_string ();
 };
 
