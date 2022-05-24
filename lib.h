@@ -14,7 +14,9 @@ using uint_t = unsigned int;
 #define PRINT(STR) std::cout << STR
 #define PRINTLN(STR) std::cout << STR << std::endl
 
-#define DEBUG 1
+#define STRVAR(VAR) #VAR
+
+#define DEBUG 0
 
 #if DEBUG
 	#define CLEAR_CONSOLE

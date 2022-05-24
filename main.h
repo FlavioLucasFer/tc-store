@@ -1,7 +1,10 @@
 #include <iostream>
-#include "lib.h"
-#include "client.h"
+#include "product_repository.h"
+#include "client_repository.h"
 #include "product.h"
+#include "client.h"
+#include "lib.h"
+#include "db.h"
 
 using choice_t = uint_t;
 
@@ -10,14 +13,14 @@ enum class state_t
 	main_menu,
 	client_menu,
 	product_menu,
-	sales,
+	sale,
 	close,
 	panic,
 	
 #define MAIN_MENU_STATE state_t::main_menu
 #define CLIENT_MENU_STATE state_t::client_menu
 #define PRODUCT_MENU_STATE state_t::product_menu
-#define SALES state_t::sales
+#define SALE state_t::sale
 #define CLOSE_STATE state_t::close
 #define PANIC_STATE state_t::panic
 };
